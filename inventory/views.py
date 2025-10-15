@@ -6,8 +6,8 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Avg
-from measurements.logic.inventory_logic import register_inventory_scan
-from measurements.models import InventoryEntry
+from inventory.logic.inventory_logic import register_inventory_scan
+from inventory.models import InventoryEntry
 
 def home(request):
     # Página con UN botón (más abajo el template)

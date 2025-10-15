@@ -1,7 +1,7 @@
 from time import perf_counter
 from django.db import transaction
-from measurements.models import InventoryEntry
-from variables.logic.products_logic import get_or_create_product_by_barcode
+from inventory.models import InventoryEntry
+from products.logic.products_logic import get_or_create_product_by_barcode
 
 def register_inventory_scan(barcode: str, qty: int = 1, provider: str | None = None, scenario: str | None = None):
     """
