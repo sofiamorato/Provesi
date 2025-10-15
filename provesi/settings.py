@@ -77,9 +77,13 @@ WSGI_APPLICATION = 'provesi.wsgi.application'
 
 # provesi/settings.py
 DATABASES = {
-    "default": {
-    "ENGINE": "django.db.backends.sqlite3",
-    "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'monitoring_db',
+        'USER': 'monitoring_user',
+        'PASSWORD': 'isis2503',
+        'HOST': '172.31.21.99',
+        'PORT': '5432',
     }
 }
 
