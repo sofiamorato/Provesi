@@ -1,6 +1,4 @@
 from django.shortcuts import render
-
-# Create your views here.
 import json
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
@@ -11,7 +9,8 @@ from inventory.models import InventoryEntry
 
 def home(request):
     # Página con UN botón (más abajo el template)
-    return render(request, "measurements/index.html")
+    # Cambiar 'measurements/index.html' por 'inventory/index.html'
+    return render(request, "inventory/index.html")  # Cambié aquí para que apunte a inventory/index.html
 
 @csrf_exempt
 @require_POST
@@ -32,6 +31,7 @@ def scan_api(request):
         return JsonResponse({"ok": False, "error": "barcode requerido"}, status=400)
 
     try:
+        # Llamada a la función 'register_inventory_scan' de 'inventory.logic.inventory_logic'
         entry, duration_ms = register_inventory_scan(barcode, qty=qty, provider=provider or None, scenario=scenario or None)
         return JsonResponse({
             "ok": True,
@@ -45,9 +45,9 @@ def scan_api(request):
 def metrics(request):
     """
     Métricas para validar ASR.
-    - /measurements/metrics/ -> devuelve promedio global
-    - /measurements/metrics/?scenario=normal
-    - /measurements/metrics/?scenario=overloaded
+    - /inventory/metrics/ -> devuelve promedio global
+    - /inventory/metrics/?scenario=normal
+    - /inventory/metrics/?scenario=overloaded
     """
     scenario = (request.GET.get("scenario") or "").strip().lower()
     qs = InventoryEntry.objects.all()
